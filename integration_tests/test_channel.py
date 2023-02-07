@@ -2,7 +2,7 @@ import unittest
 import time
 
 from qunetsim.objects import Qubit, Logger
-from qunetsim.objects.connections.channel_models import BinaryErasure, Fibre
+from qunetsim.objects.connections.channel_models import BinaryErasure, Fibre, PhaseFlip
 from qunetsim.components import Host, Network
 from qunetsim.backends import EQSNBackend
 
@@ -64,7 +64,7 @@ class TestChannel(unittest.TestCase):
     def test_channel_BEC_success(self):
         global hosts
 
-        hosts['alice'].quantum_connections[hosts['bob'].host_id].model = BinaryErasure(probability=0.0)
+        hosts['alice'].quantum_connections[hosts['bob'].host_id].model = PhaseFlip(probability=0.2)
         q = Qubit(hosts['alice'])
         q.X()
 
